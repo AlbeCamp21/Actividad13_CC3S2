@@ -29,3 +29,28 @@ Porque nos permite actualizar ese campo. Terraform genera el plan y aplica una a
 
 **4.** ¿Qué pasa si editas directamente main.tf.json en lugar de la plantilla de variables?  
 Editar el archivo `main.tf.json` aplica el cambio luego de `terraform plan` y `terraform apply`,actualizando el estado. Por otro lado, si `generate_envs.py` regenera el archivo, los cambios pueden perderse.
+
+## Fase 2
+
+### A. Remediación de 'drift' (out-of-band changes)
+
+Primero nos dirigimos a `environments/app2` y luego ejecutamos:
+
+```bash
+$ terraform init
+$ terraform plan
+$ terraform apply
+```
+
+Esto creará el recurso con las valores normales: `"name"    = "app2"` y `"network" = "net2"`.
+
+Realizando los pasos que indican en la actividad, no se logra conseguir lo que debería mostrar: *Verás un plan que propone revertir ese cambio.*
+
+Por lo tanto, lo que me funcionó fue modificar el archivo `terraform.tfstate`, modificando el nombre a `hacked-app`.
+
+Hecho dicho cambio, volvemos a ejecutar `terraform plan` y se obtiene que el recurso `hacked-app` será destruido y se creará el recurso original (`app2`).
+
+![fase2_1](img/fase2_1.png)
+
+## Fase 3
+
