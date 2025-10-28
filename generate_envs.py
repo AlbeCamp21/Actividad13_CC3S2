@@ -25,7 +25,7 @@ def render_and_write(env):
             {
                 "null_resource": [
                     {
-                        env["name"]: [
+                        "local_server": [
                             {
                                 "triggers": {
                                     "name":    env["name"],

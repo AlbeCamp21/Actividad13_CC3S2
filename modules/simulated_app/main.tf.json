@@ -3,7 +3,7 @@
     {
       "null_resource": [
         {
-          "hello-server": [
+          "local_server": [
             {
               "triggers": {
                 "name": "${var.name}",
