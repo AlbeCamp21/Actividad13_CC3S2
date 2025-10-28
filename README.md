@@ -54,3 +54,42 @@ Hecho dicho cambio, volvemos a ejecutar `terraform plan` y se obtiene que el rec
 
 ## Fase 3
 
+### Control de versiones comunica contexto
+
+Se modificó el valor `default` de la variable `name` en el archivo `modules/simulated_app/network.tf.json` de `"hello-world"` a `"nuevo-nombre"`.
+
+Luego se cambió la variable `description` a `"Nueva descripción"`.
+
+Por último, se realizaron los commits que piden, uno por cada modificación.
+
+![fase3_1](img/fase3_1.png)
+
+### Linting y formateo
+
+Primero se instala la herramienta `jq` para el formateo de archivos JSON.
+
+Ejecutamos el comando: `jq . network.tf.json > tmp && mv tmp network.tf.json` en `app1`.
+
+Con el comando conseguimos un nuevo archivo en el cual la única diferencia es que la tabulación cambió (de 4 espacios a 2 espacios).
+
+![fase3_2](img/fase3_2.png)
+
+### Nomenclatura de recursos
+
+Se renombra el recurso en `modules/simulated_app/main.tf.json` de `"hello-server"` a `"local_server"`, según lo que se pide.
+
+Luego, se modifica `generate_envs.py` para usar el nuevo nombre: `"local_server"`, y no nombres dinámicos.
+
+Por último, volvemos a generar los entornos con el script.
+
+![fase3_4](img/fase3_4.png)
+
+### Variables y constantes
+
+Añadimos una nueva variable: `port` en `modules/simulated_app/network.tf.json`, de tipo `number` y como valor default `8080`.
+
+Luego, modificamos el archivo `main.tf.json`, donde añadimos el puerto.
+
+Por último, se modifica `generate_envs.py` para la asignación de puertos de manera que aumente de uno en uno (8081, 8082, 8083). Se vuelven a generar los entornos.
+
+![fase3_3](img/fase3_3.png)
