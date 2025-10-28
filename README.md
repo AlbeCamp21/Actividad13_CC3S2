@@ -1,5 +1,39 @@
 # Actividad13_CC3S2
 
+### Propósito de la actividad
+
+En esta actividad vemos cómo crear/generar infraestructura como código que sea fácil de comprender, además de la modificación de variables y cómo esto afecta a los entornos ya generados.
+
+### Estructura
+
+```
+.
+├── environments
+│   ├── app1
+│   │   ├── main.tf.json
+│   │   └── network.tf.json
+│   ├── app2
+│   │   ├── main.tf.json
+│   │   └── network.tf.json
+│   └── app3
+│       ├── main.tf.json
+│       └── network.tf.json
+├── generate_envs.py
+├── img
+│   ├── fase1_1.png
+│   ├── fase2_1.png
+│   ├── fase3_1.png
+│   ├── fase3_2.png
+│   ├── fase3_3.png
+│   └── fase3_4.png
+├── modules
+│   └── simulated_app
+│       ├── main.tf.json
+│       └── network.tf.json
+├── README.md
+└── tools
+```
+
 ## Fase 1
 
 Se crean los entornos `app1`, `app2` y `app3` con el script `generate_envs.py`.
@@ -93,3 +127,17 @@ Luego, modificamos el archivo `main.tf.json`, donde añadimos el puerto.
 Por último, se modifica `generate_envs.py` para la asignación de puertos de manera que aumente de uno en uno (8081, 8082, 8083). Se vuelven a generar los entornos.
 
 ![fase3_3](img/fase3_3.png)
+
+## Fase 4
+
+**1.** ¿Cómo extenderías este patrón para 50 módulos y 100 entornos?  
+Podría crearse un archivo de configuración aparte donde ahí se definan todos los entornos con sus respectivos parámetros. También, se podría usar scripts en Python (como en esta actividad) para generar los entornos automáticamente con bucles.
+
+**2.** ¿Qué prácticas de revisión de código aplicarías a los .tf.json?  
+Primero usar la herramienta `jq` para verificar que el JSON sea válido y esté bien formateado (por ejemplo, tabulaciones de 2 espacios). Luego, ejecutar `terraform validate` para cada entorno creado, para detectar errores de sintaxis.
+
+**3.** ¿Cómo gestionarías secretos en producción (sin Vault)?  
+Se podría marcar las variables con `sensitive: true` en el JSON de terraform. También, crear un archivo `.env.example` y añadir el archivo `.env` al `.gitignore`, acompañado de documentación clara donde se explique que variables de entorno son necesarias para cada entorno.
+
+**4.** ¿Qué workflows de revisión aplicarías a los JSON generados?  
+Validar cada entorno generado con `terraform plan` para verificar que no haya errores.
