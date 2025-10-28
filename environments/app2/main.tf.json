@@ -3,7 +3,7 @@
         {
             "null_resource": [
                 {
-                    "app2": [
+                    "local_server": [
                         {
                             "provisioner": [
                                 {
