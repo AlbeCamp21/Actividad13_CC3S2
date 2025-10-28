@@ -8,13 +8,14 @@
                             "provisioner": [
                                 {
                                     "local-exec": {
-                                        "command": "echo 'Arrancando servidor app1 en red net1'"
+                                        "command": "echo 'Arrancando servidor app1 en red net1 en puerto 8081'"
                                     }
                                 }
                             ],
                             "triggers": {
                                 "name": "app1",
-                                "network": "lab-net"
+                                "network": "net1",
+                                "port": 8081
                             }
                         }
                     ]

@@ -4,8 +4,8 @@
             "name": [
                 {
                     "type": "string",
-                    "default": "hello-world",
-                    "description": "Nombre del servidor local"
+                    "default": "nuevo-nombre",
+                    "description": "Nueva descripción"
                 }
             ]
         },
@@ -15,6 +15,15 @@
                     "type": "string",
                     "default": "local-network",
                     "description": "Nombre de la red local"
+                }
+            ]
+        },
+        {
+            "port": [
+                {
+                    "type": "number",
+                    "default": 8080,
+                    "description": "Nueva variable puerto"
                 }
             ]
         }

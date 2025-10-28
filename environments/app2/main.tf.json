@@ -8,13 +8,14 @@
                             "provisioner": [
                                 {
                                     "local-exec": {
-                                        "command": "echo 'Arrancando servidor app2 en red net2'"
+                                        "command": "echo 'Arrancando servidor app2 en red net2 en puerto 8082'"
                                     }
                                 }
                             ],
                             "triggers": {
                                 "name": "app2",
-                                "network": "net2"
+                                "network": "net2",
+                                "port": 8082
                             }
                         }
                     ]
