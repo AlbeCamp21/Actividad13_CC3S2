@@ -17,6 +17,15 @@
                     "description": "Nombre de la red local"
                 }
             ]
+        },
+        {
+            "port": [
+                {
+                    "type": "number",
+                    "default": 8080,
+                    "description": "Nueva variable puerto"
+                }
+            ]
         }
     ]
 }

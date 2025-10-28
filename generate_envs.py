@@ -3,7 +3,7 @@ from shutil import copyfile
 
 # Parámetros de ejemplo para N entornos
 ENVS = [
-    {"name": f"app{i}", "network": f"net{i}"} for i in range(1, 4)
+    {"name": f"app{i}", "network": f"net{i}", "port": 8080+i} for i in range(1, 4)
 ]
 
 MODULE_DIR = "modules/simulated_app"
@@ -29,14 +29,15 @@ def render_and_write(env):
                             {
                                 "triggers": {
                                     "name":    env["name"],
-                                    "network": env["network"]
+                                    "network": env["network"],
+                                    "port":    env["port"]
                                 },
                                 "provisioner": [
                                     {
                                         "local-exec": {
                                             "command": (
                                                 f"echo 'Arrancando servidor "
-                                                f"{env['name']} en red {env['network']}'"
+                                                f"{env['name']} en red {env['network']} en puerto {env['port']}'"
                                             )
                                         }
                                     }
